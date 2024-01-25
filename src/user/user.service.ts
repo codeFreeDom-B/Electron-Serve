@@ -20,7 +20,7 @@ export class UserService {
     private readonly userRepository: Repository<Users>,
   ) {}
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    return 'This action adds a new user wosh';
   }
 
   findAll(): Promise<Users[]> {

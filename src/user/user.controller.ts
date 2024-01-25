@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-01-25 12:52:35
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-25 13:28:30
+ * @LastEditTime: 2024-01-25 14:08:26
  * @FilePath: \electron-serve\src\user\user.controller.ts
  * @Description:
  */
@@ -15,11 +15,12 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+import { Request } from 'express';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -33,9 +34,11 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  @Post(':id')
+  findOne(@Body() request: Request): string {
+    console.log(request, 'request');
+
+    return '123';
   }
 
   @Patch(':id')

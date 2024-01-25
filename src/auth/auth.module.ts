@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-01-25 12:49:36
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-25 13:31:29
+ * @LastEditTime: 2024-01-25 17:12:17
  * @FilePath: \electron-serve\src\auth\auth.module.ts
  * @Description:
  */
@@ -15,6 +15,9 @@ import jwtConfig from '../config/jwt.config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { Users } from 'src/user/entities/user.entity';
+import { HashingService } from './hashing.service';
+import { APP_GUARD } from '@nestjs/core';
+import { AccessTokenGuard } from './guards/access-token.guard';
 
 @Module({
   imports: [
@@ -23,6 +26,13 @@ import { Users } from 'src/user/entities/user.entity';
     JwtModule.registerAsync(jwtConfig.asProvider()),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AccessTokenGuard,
+    },
+    AuthService,
+    HashingService,
+  ],
 })
 export class AuthModule {}

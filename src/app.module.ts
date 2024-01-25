@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-01-25 11:51:46
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-25 12:30:04
+ * @LastEditTime: 2024-01-25 14:26:25
  * @FilePath: \electron-serve\src\app.module.ts
  * @Description:ConfigModule
  */
@@ -17,6 +17,7 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
+    // 目前先不做环境的判断
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         DB_HOST: Joi.string().required(),
