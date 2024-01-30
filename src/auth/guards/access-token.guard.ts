@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-01-25 16:57:32
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-25 17:20:02
+ * @LastEditTime: 2024-01-25 18:24:49
  * @FilePath: \electron-serve\src\auth\guards\access-token.guard.ts
  * @Description:
  */
@@ -44,12 +44,13 @@ export class AccessTokenGuard implements CanActivate {
       );
       request[REQUEST_USER_KEY] = payload;
     } catch (error) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('token已过期,请重新登录');
     }
     return true;
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, token] = request.headers.authorization?.split(' ') ?? [];
     return token;
   }

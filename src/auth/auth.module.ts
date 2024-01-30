@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-01-25 12:49:36
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-25 17:12:17
+ * @LastEditTime: 2024-01-25 18:18:29
  * @FilePath: \electron-serve\src\auth\auth.module.ts
  * @Description:
  */
@@ -31,6 +31,7 @@ import { AccessTokenGuard } from './guards/access-token.guard';
       provide: APP_GUARD,
       useClass: AccessTokenGuard,
     },
+
     AuthService,
     HashingService,
   ],
