@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-01-25 12:50:04
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-25 16:53:18
+ * @LastEditTime: 2024-01-31 14:57:46
  * @FilePath: \electron-serve\src\auth\auth.service.ts
  * @Description:
  */
@@ -57,12 +57,12 @@ export class AuthService {
       where: [{ name }],
     });
     if (!existingUser)
-      return new UnauthorizedException('该用户不存在,请检查账号');
+      return new UnauthorizedException('该用户不存在,请检查账号!');
     const isEqual = await this.hashingService.compare(
       password,
       existingUser.password,
     );
-    if (!isEqual) return new UnauthorizedException('用户名/密码不正确');
+    if (!isEqual) return new UnauthorizedException('密码不正确,请检查密码!');
     return await this.generateTokens(existingUser);
   }
   //生成token
