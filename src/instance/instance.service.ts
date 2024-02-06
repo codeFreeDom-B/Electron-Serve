@@ -2,11 +2,11 @@
  * @Author: SUN HENG
  * @Date: 2024-02-06 09:54:12
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 11:52:13
+ * @LastEditTime: 2024-02-06 16:12:34
  * @FilePath: \electron-serve\src\instance\instance.service.ts
  * @Description:
  */
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateInstanceDto } from './dto/create-instance.dto';
 import { UpdateInstanceDto } from './dto/update-instance.dto';
 import { Repository } from 'typeorm';
@@ -33,7 +33,7 @@ export class InstanceService {
       id: parentId,
     });
 
-    caseItem.backgrounUrl = thumbnail;
+    caseItem.backgroundUrl = thumbnail;
     this.CaseReporsitory.update(caseItem.id, caseItem);
     return { code: 200, message: '保存成功' };
   }
@@ -53,6 +53,9 @@ export class InstanceService {
     });
     merge(InstanceItem, updateInstanceDto);
     this.InstanceRepository.save(InstanceItem);
+    this.CaseReporsitory.update(InstanceItem.parentId, {
+      backgroundUrl: updateInstanceDto.thumbnail,
+    });
     return { code: 200, message: '保存成功' };
   }
 
