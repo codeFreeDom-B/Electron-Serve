@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-01-31 16:45:02
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 16:43:50
+ * @LastEditTime: 2024-02-07 11:20:41
  * @FilePath: \electron-serve\src\case\case.controller.ts
  * @Description:
  */
@@ -22,10 +22,5 @@ export class CaseController {
   @Get()
   findAll() {
     return this.caseService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.caseService.findOne(+id);
   }
 }

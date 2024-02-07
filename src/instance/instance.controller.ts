@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-02-06 09:54:12
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 11:00:00
+ * @LastEditTime: 2024-02-07 12:54:59
  * @FilePath: \electron-serve\src\instance\instance.controller.ts
  * @Description:
  */
@@ -14,6 +14,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { InstanceService } from './instance.service';
 import { CreateInstanceDto } from './dto/create-instance.dto';
@@ -33,7 +34,7 @@ export class InstanceController {
     return this.instanceService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(
     @Param('id') id: string,
     @Body() updateInstanceDto: UpdateInstanceDto,

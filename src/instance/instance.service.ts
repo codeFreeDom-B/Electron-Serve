@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-02-06 09:54:12
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 16:12:34
+ * @LastEditTime: 2024-02-07 13:19:20
  * @FilePath: \electron-serve\src\instance\instance.service.ts
  * @Description:
  */
@@ -32,8 +32,9 @@ export class InstanceService {
     const caseItem = await this.CaseReporsitory.findOneBy({
       id: parentId,
     });
-
-    caseItem.backgroundUrl = thumbnail;
+    if (thumbnail) {
+      caseItem.backgroundUrl = thumbnail;
+    }
     this.CaseReporsitory.update(caseItem.id, caseItem);
     return { code: 200, message: '保存成功' };
   }
@@ -56,6 +57,7 @@ export class InstanceService {
     this.CaseReporsitory.update(InstanceItem.parentId, {
       backgroundUrl: updateInstanceDto.thumbnail,
     });
+
     return { code: 200, message: '保存成功' };
   }
 
