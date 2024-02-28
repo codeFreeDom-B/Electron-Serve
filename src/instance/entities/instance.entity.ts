@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-02-06 09:54:12
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 15:56:53
+ * @LastEditTime: 2024-02-28 16:46:17
  * @FilePath: \electron-serve\src\instance\entities\instance.entity.ts
  * @Description:
  */
@@ -18,9 +18,12 @@ export class Instance {
   //缩略图
   @Column({ type: 'longtext' })
   thumbnail: string;
-  // 画布配置
+  // 画布节点
   @Column({ type: 'longtext' })
   GraphConfig: string;
+  // 画布配置参数
+  @Column({ type: 'longtext' })
+  GraphOption: string;
   // 是否发布
   @Column({ default: false })
   isPublish: boolean;
